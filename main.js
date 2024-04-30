@@ -57,11 +57,12 @@ async function showStations(url) {
                   
                   <h4>${feature.properties.name} (${feature.geometry.coordinates[2]}m)</h4>
                   <ul>
-                  <li> Lufttemperatur (°C): ${feature.properties.LT}
-                  <li> Relative Luftfeuchte (%): ${feature.properties.RH}
-                  <li> Windgeschwindigkeit (km/h): ${feature.properties.WG}
-                  <li> Schneehöhe (cm): ${feature.properties.SH} 
+                  <li> Lufttemperatur (°C): ${feature.properties.LT ||"-"}
+                  <li> Relative Luftfeuchte (%): ${feature.properties.RH ||"-"}
+                  <li> Windgeschwindigkeit (km/h): ${feature.properties.WG ||"-"}
+                  <li> Schneehöhe (cm): ${feature.properties.SH ||"-"}
                   </ul>
+                  ${feature.properties.date}
                 `)
         }
       }).addTo(themaLayer.stations);
