@@ -40,7 +40,26 @@ async function showStations(url) {
     let geojson = await response.json();
 
     // Wetterstationen mit Icons und Popups
-    console.log(geojson)
+    L.geoJSON(geojson, {
+        pointToLayer: function(feature, latlng) {
+          return L.marker(latlng, {
+            icon: L.icon({
+              iconUrl: "icons/photo.png",
+              iconAnchor: [16, 37],
+              popupAnchor: [0, -37]
+            })
+          });
+        },
+        onEachFeature: function (feature, layer) {
+          // console.log(feature);
+          // console.log(feature.properties.NAME);
+          layer.bindPopup(`
+                  <img src="${feature.properties.THUMBNAIL}" alt="*">
+                  <h4><a href="${feature.properties.WEITERE_INF}" target="wien">${feature.properties.NAME}</a></h4>
+                  <address>${feature.properties.ADRESSE}</address>
+                `)
+        }
+      }).addTo(themaLayer.sights);
 
 }
 showStations("https://static.avalanche.report/weather_stations/stations.geojson");
