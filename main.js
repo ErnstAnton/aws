@@ -56,7 +56,12 @@ async function showStations(url) {
           layer.bindPopup(`
                   
                   <h4>${feature.properties.name} (${feature.geometry.coordinates[2]}m)</h4>
-                  <address>${feature.properties.ADRESSE}</address>
+                  <ul>
+                  <li> Lufttemperatur (°C): ${feature.properties.LT}
+                  <li> Relative Luftfeuchte (%): ${feature.properties.RH}
+                  <li> Windgeschwindigkeit (km/h): ${feature.properties.WG}
+                  <li> Schneehöhe (cm): ${feature.properties.SH} 
+                  </ul>
                 `)
         }
       }).addTo(themaLayer.stations);
