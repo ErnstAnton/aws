@@ -54,12 +54,12 @@ async function showStations(url) {
           // console.log(feature);
           // console.log(feature.properties.NAME);
           layer.bindPopup(`
-                  <img src="${feature.properties.THUMBNAIL}" alt="*">
-                  <h4><a href="${feature.properties.WEITERE_INF}" target="wien">${feature.properties.NAME}</a></h4>
+                  
+                  <h4>${feature.properties.name} (${feature.geometry.coordinates[2]}m)</h4>
                   <address>${feature.properties.ADRESSE}</address>
                 `)
         }
-      }).addTo(themaLayer.sights);
+      }).addTo(themaLayer.stations);
 
 }
 showStations("https://static.avalanche.report/weather_stations/stations.geojson");
