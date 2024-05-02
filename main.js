@@ -41,31 +41,28 @@ async function showStations(url) {
 
     // Wetterstationen mit Icons und Popups
     L.geoJSON(geojson, {
-        pointToLayer: function(feature, latlng) {
-          return L.marker(latlng, {
-            icon: L.icon({
-              iconUrl: "icons/wifi.png",
-              iconAnchor: [16, 37],
-              popupAnchor: [0, -37]
-            })
-          });
+        pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: "icons/wifi.png",
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
+                })
+            });
         },
         onEachFeature: function (feature, layer) {
-          // console.log(feature);
-          // console.log(feature.properties.NAME);
-          layer.bindPopup(`
-                  
+            layer.bindPopup(`
                   <h4>${feature.properties.name} (${feature.geometry.coordinates[2]}m)</h4>
                   <ul>
-                  <li> Lufttemperatur (°C): ${feature.properties.LT ||"-"}
-                  <li> Relative Luftfeuchte (%): ${feature.properties.RH ||"-"}
-                  <li> Windgeschwindigkeit (km/h): ${feature.properties.WG ||"-"}
-                  <li> Schneehöhe (cm): ${feature.properties.SH ||"-"}
+                  <li> Lufttemperatur (°C): ${feature.properties.LT || "-"}
+                  <li> Relative Luftfeuchte (%): ${feature.properties.RH || "-"}
+                  <li> Windgeschwindigkeit (km/h): ${feature.properties.WG || "-"}
+                  <li> Schneehöhe (cm): ${feature.properties.SH || "-"}
                   </ul>
                   ${feature.properties.date}
                 `)
         }
-      }).addTo(themaLayer.stations);
+    }).addTo(themaLayer.stations);
 
 }
 showStations("https://static.avalanche.report/weather_stations/stations.geojson");
