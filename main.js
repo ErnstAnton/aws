@@ -143,5 +143,6 @@ async function showStations(url) {
     }).addTo(themaLayer.stations);
     showTemperature(geojson);
     showWind(geojson);
+    showSnow(geojson);
 }
 showStations("https://static.avalanche.report/weather_stations/stations.geojson");
