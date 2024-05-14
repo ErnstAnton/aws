@@ -52,13 +52,13 @@ function getColor(value, ramp) {
 // Temperatur
 function showTemperature(geojson) {
     L.geoJSON(geojson, {
-        filter: function(feature) {
+        filter: function (feature) {
             // feature.properties.LT
             if (feature.properties.LT > -50 && feature.properties.LT < 50) {
                 return true;
             }
         },
-        pointToLayer: function(feature,latlng) {
+        pointToLayer: function (feature, latlng) {
             let color = getColor(feature.properties.LT, COLORS.temperature);
             return L.marker(latlng, {
                 icon: L.divIcon({
@@ -67,19 +67,19 @@ function showTemperature(geojson) {
                 })
             })
         }
-    }) .addTo(themaLayer.temperature);
+    }).addTo(themaLayer.temperature);
 }
 
 //Wind
 function showWind(geojson) {
     L.geoJSON(geojson, {
-        filter: function(feature) {
+        filter: function (feature) {
             // feature.properties.WG
             if (feature.properties.WG > 0 && feature.properties.WG < 250) {
                 return true;
             }
         },
-        pointToLayer: function(feature,latlng) {
+        pointToLayer: function (feature, latlng) {
             let color = getColor(feature.properties.WG, COLORS.wind);
             return L.marker(latlng, {
                 icon: L.divIcon({
@@ -88,7 +88,27 @@ function showWind(geojson) {
                 })
             })
         }
-    }) .addTo(themaLayer.wind);
+    }).addTo(themaLayer.wind);
+}
+
+//Schneehöhe
+function showSnow(geojson) {
+    L.geoJSON(geojson, {
+        filter: function (feature) {
+            if (feature.properties.HS > 0 && feature.properties.HS < 1000) {
+                return true;
+            }
+        },
+        pointToLayer: function (feature, latlng) {
+            let color = getColor(feature.properties.HS, COLORS.snow);
+            return L.marker(latlng, {
+                icon: L.divIcon({
+                    className: "aws-div-icon",
+                    html: `<span style="background-color:${color};">${feature.properties.HS.toFixed(1)}</span>`
+                })
+            })
+        }
+    }).addTo(themaLayer.snow);
 }
 
 // GeoJSON der Wetterstationen laden
