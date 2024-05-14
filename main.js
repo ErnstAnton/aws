@@ -14,8 +14,8 @@ let map = L.map("map", {
 // thematische Layer
 let themaLayer = {
     stations: L.featureGroup(),
-    temperature: L.featureGroup().addTo(map),
-    wind: L.featureGroup().addTo(map),
+    temperature: L.featureGroup(),
+    wind: L.featureGroup(),
     snow: L.featureGroup().addTo(map),
 }
 
