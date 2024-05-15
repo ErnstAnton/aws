@@ -35,6 +35,18 @@ L.control.layers({
     "Schneehöhe in cm": themaLayer.snow,
 }).addTo(map);
 
+// Change default options - Rainviewer
+L.control.rainviewer({
+    position: 'bottomleft',
+    nextButtonText: '>',
+    playStopButtonText: 'Play/Stop',
+    prevButtonText: '<',
+    positionSliderLabelText: "Hour:",
+    opacitySliderLabelText: "Opacity:",
+    animationInterval: 500,
+    opacity: 0.5
+}).addTo(map);
+
 // Maßstab
 L.control.scale({
     imperial: false,
